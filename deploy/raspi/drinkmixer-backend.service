@@ -1,0 +1,17 @@
+[Unit]
+Description=Drink Mixer FastAPI Backend
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/Drinkmixer
+Environment="MIXER_MODE=gpio"
+Environment="SERVE_FRONTEND=0"
+ExecStart=/home/pi/Drinkmixer/.venv/bin/uvicorn backend.app.main:app --host 0.0.0.0 --port 8000
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

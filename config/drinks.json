@@ -1,0 +1,118 @@
+[
+  {
+    "id": "rum_coke",
+    "name": "Rum & Coke",
+    "description": "Classic highball with white rum and cola over ice.",
+    "image": "rum_coke.jpg",
+    "ingredients": [
+      { "pump": 2, "ml": 50 },
+      { "pump": 10, "ml": 140 }
+    ],
+    "tags": ["classic", "sweet", "strong"]
+  },
+  {
+    "id": "vodka_cola",
+    "name": "Vodka Cola",
+    "description": "Simple and crisp vodka long drink with cola.",
+    "image": "vodka_cola.jpg",
+    "ingredients": [
+      { "pump": 1, "ml": 50 },
+      { "pump": 10, "ml": 140 }
+    ],
+    "tags": ["strong", "classic"]
+  },
+  {
+    "id": "gin_cola",
+    "name": "Gin Cola",
+    "description": "Gin-forward long drink balanced by cola sweetness.",
+    "image": "gin_cola.jpg",
+    "ingredients": [
+      { "pump": 3, "ml": 45 },
+      { "pump": 10, "ml": 145 }
+    ],
+    "tags": ["strong", "sweet"]
+  },
+  {
+    "id": "tequila_cola",
+    "name": "Tequila Cola",
+    "description": "Bold tequila and cola mix for quick service.",
+    "image": "tequila_cola.jpg",
+    "ingredients": [
+      { "pump": 4, "ml": 50 },
+      { "pump": 10, "ml": 140 }
+    ],
+    "tags": ["strong"]
+  },
+  {
+    "id": "whiskey_cola",
+    "name": "Whiskey Cola",
+    "description": "Smooth whiskey topped with cola.",
+    "image": "whiskey_cola.jpg",
+    "ingredients": [
+      { "pump": 5, "ml": 50 },
+      { "pump": 10, "ml": 140 }
+    ],
+    "tags": ["classic", "strong"]
+  },
+  {
+    "id": "vodka_sour",
+    "name": "Vodka Sour",
+    "description": "Clean vodka sour with lemon and a touch of syrup.",
+    "image": "vodka_sour.jpg",
+    "ingredients": [
+      { "pump": 1, "ml": 50 },
+      { "pump": 7, "ml": 25 },
+      { "pump": 9, "ml": 20 }
+    ],
+    "tags": ["sour", "strong"]
+  },
+  {
+    "id": "whiskey_sour",
+    "name": "Whiskey Sour",
+    "description": "Classic whiskey sour style without egg white.",
+    "image": "whiskey_sour.jpg",
+    "ingredients": [
+      { "pump": 5, "ml": 50 },
+      { "pump": 7, "ml": 25 },
+      { "pump": 9, "ml": 20 }
+    ],
+    "tags": ["classic", "sour", "strong"]
+  },
+  {
+    "id": "daiquiri_style",
+    "name": "Daiquiri Style",
+    "description": "Rum, lime, and syrup in a balanced sour format.",
+    "image": "daiquiri_style.jpg",
+    "ingredients": [
+      { "pump": 2, "ml": 50 },
+      { "pump": 8, "ml": 25 },
+      { "pump": 9, "ml": 15 }
+    ],
+    "tags": ["classic", "sour", "strong"]
+  },
+  {
+    "id": "tequila_sour",
+    "name": "Tequila Sour",
+    "description": "Bright tequila sour with lemon and syrup.",
+    "image": "tequila_sour.jpg",
+    "ingredients": [
+      { "pump": 4, "ml": 50 },
+      { "pump": 7, "ml": 25 },
+      { "pump": 9, "ml": 15 }
+    ],
+    "tags": ["sour", "strong"]
+  },
+  {
+    "id": "kamikaze_style",
+    "name": "Kamikaze Style",
+    "description": "Vodka, triple sec, and lime in a tart profile.",
+    "image": "kamikaze_style.jpg",
+    "ingredients": [
+      { "pump": 1, "ml": 40 },
+      { "pump": 6, "ml": 20 },
+      { "pump": 8, "ml": 20 },
+      { "pump": 9, "ml": 10 }
+    ],
+    "tags": ["sour", "strong", "classic"]
+  }
+]

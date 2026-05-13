@@ -1,0 +1,12 @@
+[
+  { "pump_id": "pump_1", "ml_per_sec": 10.0 },
+  { "pump_id": "pump_2", "ml_per_sec": 10.0 },
+  { "pump_id": "pump_3", "ml_per_sec": 10.0 },
+  { "pump_id": "pump_4", "ml_per_sec": 10.0 },
+  { "pump_id": "pump_5", "ml_per_sec": 10.0 },
+  { "pump_id": "pump_6", "ml_per_sec": 10.0 },
+  { "pump_id": "pump_7", "ml_per_sec": 12.0 },
+  { "pump_id": "pump_8", "ml_per_sec": 12.0 },
+  { "pump_id": "pump_9", "ml_per_sec": 12.0 },
+  { "pump_id": "pump_10", "ml_per_sec": 9.0 }
+]

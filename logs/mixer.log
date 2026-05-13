@@ -1,0 +1,30 @@
+2026-05-12 14:51:23,442 INFO drinkmixer startup mode=mock pumps_loaded=10 drinks_loaded=10
+2026-05-12 14:51:23,443 INFO drinkmixer startup_pumps pump1@gpio17, pump2@gpio18, pump3@gpio27, pump4@gpio22, pump5@gpio23, pump6@gpio24, pump7@gpio25, pump8@gpio5, pump9@gpio6, pump10@gpio12
+2026-05-12 14:51:23,443 INFO drinkmixer startup_drinks rum_coke, vodka_cola, gin_cola, tequila_cola, whiskey_cola, vodka_sour, whiskey_sour, daiquiri_style, tequila_sour, kamikaze_style
+2026-05-12 14:59:38,511 INFO drinkmixer shutdown requested
+2026-05-12 14:59:44,579 INFO drinkmixer startup mode=mock pumps_loaded=10 drinks_loaded=10
+2026-05-12 14:59:44,580 INFO drinkmixer startup_pumps pump1@gpio17, pump2@gpio18, pump3@gpio27, pump4@gpio22, pump5@gpio23, pump6@gpio24, pump7@gpio25, pump8@gpio5, pump9@gpio6, pump10@gpio12
+2026-05-12 14:59:44,581 INFO drinkmixer startup_drinks rum_coke, vodka_cola, gin_cola, tequila_cola, whiskey_cola, vodka_sour, whiskey_sour, daiquiri_style, tequila_sour, kamikaze_style
+2026-05-12 15:00:36,775 INFO drinkmixer shutdown requested
+2026-05-12 15:02:00,363 INFO drinkmixer startup mode=mock pumps_loaded=10 drinks_loaded=10
+2026-05-12 15:02:00,364 INFO drinkmixer startup_pumps pump1@gpio17, pump2@gpio18, pump3@gpio27, pump4@gpio22, pump5@gpio23, pump6@gpio24, pump7@gpio25, pump8@gpio5, pump9@gpio6, pump10@gpio12
+2026-05-12 15:02:00,364 INFO drinkmixer startup_drinks rum_coke, vodka_cola, gin_cola, tequila_cola, whiskey_cola, vodka_sour, whiskey_sour, daiquiri_style, tequila_sour, kamikaze_style
+2026-05-12 15:04:42,621 INFO drinkmixer shutdown requested
+2026-05-13 10:20:20,730 INFO drinkmixer startup mode=mock pumps_loaded=10 drinks_loaded=10
+2026-05-13 10:20:20,731 INFO drinkmixer startup_pumps pump1@gpio17, pump2@gpio18, pump3@gpio27, pump4@gpio22, pump5@gpio23, pump6@gpio24, pump7@gpio25, pump8@gpio5, pump9@gpio6, pump10@gpio12
+2026-05-13 10:20:20,731 INFO drinkmixer startup_drinks rum_coke, vodka_cola, gin_cola, tequila_cola, whiskey_cola, vodka_sour, whiskey_sour, daiquiri_style, tequila_sour, kamikaze_style
+2026-05-13 10:30:03,205 INFO drinkmixer shutdown requested
+2026-05-13 10:36:55,698 INFO drinkmixer startup mode=mock pumps_loaded=10 drinks_loaded=10
+2026-05-13 10:36:55,698 INFO drinkmixer startup_pumps pump1@gpio17, pump2@gpio18, pump3@gpio27, pump4@gpio22, pump5@gpio23, pump6@gpio24, pump7@gpio25, pump8@gpio5, pump9@gpio6, pump10@gpio12
+2026-05-13 10:36:55,699 INFO drinkmixer startup_drinks rum_coke, vodka_cola, gin_cola, tequila_cola, whiskey_cola, vodka_sour, whiskey_sour, daiquiri_style, tequila_sour, kamikaze_style
+2026-05-13 10:40:58,390 INFO drinkmixer drink_started run_id=672c500c-08d6-45a0-8795-a75a01f65039 drink_id=tequila_cola drink_name=Tequila Cola
+2026-05-13 10:41:10,128 INFO drinkmixer drink_completed run_id=672c500c-08d6-45a0-8795-a75a01f65039 drink_id=tequila_cola drink_name=Tequila Cola
+2026-05-13 10:41:41,888 INFO drinkmixer drink_started run_id=034a9c8d-9643-4ed9-ba31-9e914974f0d1 drink_id=tequila_cola drink_name=Tequila Cola
+2026-05-13 10:41:53,628 INFO drinkmixer drink_completed run_id=034a9c8d-9643-4ed9-ba31-9e914974f0d1 drink_id=tequila_cola drink_name=Tequila Cola
+2026-05-13 10:42:44,691 INFO drinkmixer drink_started run_id=c8e3c49d-845a-4fec-bae3-a6556b6f59a7 drink_id=tequila_cola drink_name=Tequila Cola
+2026-05-13 10:42:56,439 INFO drinkmixer drink_completed run_id=c8e3c49d-845a-4fec-bae3-a6556b6f59a7 drink_id=tequila_cola drink_name=Tequila Cola
+2026-05-13 10:47:55,547 INFO drinkmixer startup mode=mock pumps_loaded=10 drinks_loaded=10
+2026-05-13 10:47:55,548 INFO drinkmixer startup_pumps pump1@gpio17, pump2@gpio18, pump3@gpio27, pump4@gpio22, pump5@gpio23, pump6@gpio24, pump7@gpio25, pump8@gpio5, pump9@gpio6, pump10@gpio12
+2026-05-13 10:47:55,548 INFO drinkmixer startup_drinks rum_coke, vodka_cola, gin_cola, tequila_cola, whiskey_cola, vodka_sour, whiskey_sour, daiquiri_style, tequila_sour, kamikaze_style
+2026-05-13 11:02:21,204 INFO drinkmixer drink_started run_id=9a946403-6b37-4c8c-be72-33017713438c drink_id=tequila_cola drink_name=Tequila Cola
+2026-05-13 11:02:32,978 INFO drinkmixer drink_completed run_id=9a946403-6b37-4c8c-be72-33017713438c drink_id=tequila_cola drink_name=Tequila Cola

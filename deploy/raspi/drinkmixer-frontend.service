@@ -1,0 +1,17 @@
+[Unit]
+Description=Drink Mixer React Frontend (Vite)
+After=network.target drinkmixer-backend.service
+Requires=drinkmixer-backend.service
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/Drinkmixer/frontend
+Environment="VITE_API_BASE=http://127.0.0.1:8000"
+ExecStart=/usr/bin/npm run dev -- --host 0.0.0.0 --port 5173 --strictPort
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

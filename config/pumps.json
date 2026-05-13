@@ -1,0 +1,72 @@
+[
+  {
+    "pump": 1,
+    "ingredient": "Vodka",
+    "gpio_pin": 17,
+    "ml_per_second": 8.333,
+    "enabled": true
+  },
+  {
+    "pump": 2,
+    "ingredient": "Rum",
+    "gpio_pin": 18,
+    "ml_per_second": 8.333,
+    "enabled": true
+  },
+  {
+    "pump": 3,
+    "ingredient": "Gin",
+    "gpio_pin": 27,
+    "ml_per_second": 8.333,
+    "enabled": true
+  },
+  {
+    "pump": 4,
+    "ingredient": "Tequila",
+    "gpio_pin": 22,
+    "ml_per_second": 8.333,
+    "enabled": true
+  },
+  {
+    "pump": 5,
+    "ingredient": "Whiskey",
+    "gpio_pin": 23,
+    "ml_per_second": 8.333,
+    "enabled": true
+  },
+  {
+    "pump": 6,
+    "ingredient": "Triple Sec",
+    "gpio_pin": 24,
+    "ml_per_second": 8.333,
+    "enabled": true
+  },
+  {
+    "pump": 7,
+    "ingredient": "Lemon Juice",
+    "gpio_pin": 25,
+    "ml_per_second": 8.333,
+    "enabled": true
+  },
+  {
+    "pump": 8,
+    "ingredient": "Lime Juice",
+    "gpio_pin": 5,
+    "ml_per_second": 8.333,
+    "enabled": true
+  },
+  {
+    "pump": 9,
+    "ingredient": "Simple Syrup",
+    "gpio_pin": 6,
+    "ml_per_second": 8.333,
+    "enabled": true
+  },
+  {
+    "pump": 10,
+    "ingredient": "Cola",
+    "gpio_pin": 12,
+    "ml_per_second": 8.333,
+    "enabled": true
+  }
+]

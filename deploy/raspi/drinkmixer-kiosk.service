@@ -1,0 +1,17 @@
+[Unit]
+Description=Drink Mixer Chromium Kiosk
+After=graphical.target drinkmixer-frontend.service
+Requires=drinkmixer-frontend.service
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/home/pi/.Xauthority
+ExecStart=/home/pi/Drinkmixer/deploy/raspi/kiosk.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=graphical.target

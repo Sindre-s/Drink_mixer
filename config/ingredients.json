@@ -1,0 +1,12 @@
+[
+  { "id": "vodka", "name": "Vodka" },
+  { "id": "gin", "name": "Gin" },
+  { "id": "rum_white", "name": "White Rum" },
+  { "id": "tequila", "name": "Tequila" },
+  { "id": "triple_sec", "name": "Triple Sec" },
+  { "id": "lime_juice", "name": "Lime Juice" },
+  { "id": "cola", "name": "Cola" },
+  { "id": "tonic", "name": "Tonic Water" },
+  { "id": "orange_juice", "name": "Orange Juice" },
+  { "id": "simple_syrup", "name": "Simple Syrup" }
+]

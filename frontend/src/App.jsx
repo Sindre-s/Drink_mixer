@@ -47,8 +47,10 @@ function DrinkImage({ imagePath, name, className }) {
 
   if (!src) {
     return (
-      <div className={`flex items-center justify-center bg-gradient-to-br from-fuchsia-500/40 via-amber-500/35 to-cyan-500/35 ${className}`}>
-        <span className="px-3 text-center text-xl font-semibold text-white/95 drop-shadow-sm">{name}</span>
+      <div className={`photo-missing flex items-center justify-center ${className}`}>
+        <span className="px-3 text-center text-lg font-semibold uppercase tracking-wide drop-shadow-sm">
+          Add photo
+        </span>
       </div>
     );
   }
@@ -312,7 +314,7 @@ function App() {
   const renderTag = (tag) => (
     <span
       key={tag}
-      className="rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs uppercase text-zinc-100"
+      className="rounded-md border border-black/20 bg-[#f1eadf] px-2 py-1 text-[11px] font-black uppercase text-[#3d3427]"
     >
       {tag}
     </span>
@@ -323,36 +325,36 @@ function App() {
   const showNoSearchResult = !loading && drinks.length > 0 && filteredCount === 0;
 
   return (
-    <div className="relative h-full w-full overflow-hidden bg-surface text-zinc-100">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(249,115,22,0.28),transparent_35%),radial-gradient(circle_at_85%_25%,rgba(168,85,247,0.25),transparent_35%),radial-gradient(circle_at_65%_80%,rgba(14,165,233,0.18),transparent_40%)]" />
-      <div className="relative mx-auto flex h-full w-full max-w-[1280px] flex-col gap-4 px-3 py-3 sm:px-4 sm:py-4">
-        <header className="glass-panel flex min-h-20 items-center justify-between rounded-2xl px-4 py-3 sm:px-6">
-          <div className="flex items-center gap-4">
-            <div className="rounded-xl bg-gradient-to-br from-amber-400/30 via-fuchsia-400/20 to-cyan-400/20 p-3 text-amber-200 ring-1 ring-white/30">
+    <div className="relative h-full w-full overflow-hidden bg-[#f1eadf] text-[#17130d]">
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.72),rgba(231,217,196,0.62)),radial-gradient(circle_at_50%_0%,rgba(255,211,90,0.22),transparent_42%)]" />
+      <div className="relative mx-auto flex h-full w-full max-w-[1024px] flex-col gap-2 px-2 py-2 sm:gap-3 sm:px-3 sm:py-3">
+        <header className="glass-panel flex min-h-14 items-center justify-between rounded-xl px-3 py-2 sm:min-h-16 sm:px-4">
+          <div className="flex items-center gap-3">
+            <div className="rounded-lg bg-[#17130d] p-2 text-[#ffd35a] ring-2 ring-[#d9b65b]/45">
               <Martini size={24} />
             </div>
             <div>
-              <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">Drink Mixer</h1>
+              <h1 className="text-xl font-black tracking-tight sm:text-2xl">Drink Mixer</h1>
               {statusText !== "Ready" && (
-                <p className="text-base text-zinc-300">{statusText}</p>
+                <p className="text-sm font-semibold text-zinc-300 sm:text-base">{statusText}</p>
               )}
             </div>
           </div>
           <div className="flex items-center gap-2">
             <button
               onClick={() => setView("home")}
-              className="min-h-12 rounded-xl border border-white/25 bg-white/10 px-4 text-base font-medium transition hover:bg-white/20 active:scale-[0.98]"
+              className="sun-button min-h-12 rounded-lg px-4 text-base font-bold transition hover:brightness-95"
             >
               Home
             </button>
             <button
               onClick={() => setView("admin")}
-              className="flex min-h-12 items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-4 text-base font-medium transition hover:bg-white/20 active:scale-[0.98]"
+              className="sun-button flex min-h-12 items-center gap-2 rounded-lg px-4 text-base font-bold transition hover:brightness-95"
             >
               <Settings size={18} />
               Admin
             </button>
-            <div className={`rounded-xl px-4 py-2 text-base font-semibold ${busy ? "bg-amber-300 text-zinc-900" : "bg-emerald-300 text-zinc-900"}`}>
+            <div className={`rounded-lg border-2 border-black/20 px-4 py-2 text-base font-black ${busy ? "bg-[#ffd35a] text-zinc-950" : "bg-[#2f8f5b] text-white"}`}>
               {busy ? "Busy" : "Ready"}
             </div>
           </div>
@@ -365,22 +367,22 @@ function App() {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
-              className="grid min-h-0 flex-1 grid-cols-12 gap-4"
+              className="grid min-h-0 flex-1 grid-cols-12 gap-2 sm:gap-3"
             >
-              <aside className="glass-panel col-span-12 flex min-h-0 flex-col rounded-2xl p-4 md:col-span-4 md:p-5">
-                <div className="mb-4 flex items-center gap-2 rounded-xl border border-white/20 bg-black/20 px-3 py-3">
-                  <Search size={20} className="text-zinc-300" />
+              <aside className="glass-panel col-span-12 flex min-h-0 flex-col rounded-xl p-3 md:col-span-4 md:p-3">
+                <div className="mb-2 flex min-h-12 items-center gap-2 rounded-lg border-2 border-black/15 bg-white px-3 py-2">
+                  <Search size={20} className="text-[#5a4e3d]" />
                   <input
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Search drinks..."
-                    className="w-full bg-transparent text-lg outline-none placeholder:text-zinc-400"
+                    className="w-full bg-transparent text-lg font-semibold text-[#17130d] outline-none placeholder:text-[#5a4e3d]"
                   />
                 </div>
-                <div className="mb-4 flex flex-wrap gap-2">
+                <div className="mb-2 flex flex-wrap gap-2">
                   <button
                     onClick={() => setActiveTag("all")}
-                    className={`min-h-11 rounded-full px-4 text-base capitalize transition ${activeTag === "all" ? "bg-white text-zinc-900" : "border border-white/20 bg-white/10 hover:bg-white/20"}`}
+                    className={`min-h-11 rounded-lg px-4 text-base font-bold capitalize transition ${activeTag === "all" ? "bg-[#17130d] text-white" : "sun-button"}`}
                   >
                     All
                   </button>
@@ -388,7 +390,7 @@ function App() {
                     <button
                       key={tag}
                       onClick={() => setActiveTag(tag)}
-                      className={`min-h-11 rounded-full px-4 text-base capitalize transition ${activeTag === tag ? "bg-white text-zinc-900" : "border border-white/20 bg-white/10 hover:bg-white/20"}`}
+                      className={`min-h-11 rounded-lg px-4 text-base font-bold capitalize transition ${activeTag === tag ? "bg-[#17130d] text-white" : "sun-button"}`}
                     >
                       {tag}
                     </button>
@@ -397,23 +399,23 @@ function App() {
 
                 {loading && (
                   <div className="flex-1 space-y-3">
-                    <div className="h-12 animate-pulse rounded-xl bg-white/10" />
-                    <div className="h-52 animate-pulse rounded-xl bg-white/10" />
-                    <div className="h-24 animate-pulse rounded-xl bg-white/10" />
+                    <div className="h-12 animate-pulse rounded-lg bg-black/10" />
+                    <div className="h-52 animate-pulse rounded-lg bg-black/10" />
+                    <div className="h-24 animate-pulse rounded-lg bg-black/10" />
                   </div>
                 )}
 
                 {!loading && view === "home" && (
-                  <div className="flex-1 rounded-2xl border border-white/20 bg-black/20 p-4 text-base text-zinc-300">
-                    Tap any cocktail card to open details and start mixing.
+                  <div className="flex-1 rounded-lg border-2 border-black/15 bg-[#fffaf0] p-3 text-base font-semibold text-zinc-300">
+                    Tap a photo to choose a cocktail.
                   </div>
                 )}
 
                 {!loading && view === "detail" && selectedDrink && (
-                  <div className="rounded-2xl border border-white/25 bg-black/20 p-3 sm:p-4">
+                  <div className="rounded-lg border-2 border-black/15 bg-[#fffaf0] p-3">
                     <button
                       onClick={() => setView("home")}
-                      className="mb-3 flex min-h-11 items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-4 text-base transition hover:bg-white/20 active:scale-[0.98]"
+                      className="sun-button mb-2 flex min-h-11 items-center gap-2 rounded-lg px-4 text-base font-bold transition hover:brightness-95"
                     >
                       <ArrowLeft size={18} />
                       Back
@@ -421,14 +423,14 @@ function App() {
                     <DrinkImage
                       imagePath={selectedDrink.image}
                       name={selectedDrink.name}
-                      className="mb-4 h-48 w-full rounded-xl object-cover ring-1 ring-white/20 sm:h-56"
+                      className="mb-3 h-32 w-full rounded-lg object-cover ring-2 ring-black/15 sm:h-40"
                     />
-                    <h2 className="mb-2 text-2xl font-semibold sm:text-3xl">{selectedDrink.name}</h2>
-                    <p className="mb-3 text-base text-zinc-300">{selectedDrink.description || "House-crafted balance of premium ingredients."}</p>
-                    <div className="mb-4 flex flex-wrap gap-2">{(selectedDrink.tags || []).map(renderTag)}</div>
-                    <div className="mb-5 space-y-2 text-base text-zinc-200">
+                    <h2 className="mb-1 text-2xl font-black sm:text-3xl">{selectedDrink.name}</h2>
+                    <p className="mb-2 line-clamp-2 text-sm font-semibold text-zinc-300 sm:text-base">{selectedDrink.description || "House-crafted balance of premium ingredients."}</p>
+                    <div className="mb-3 flex flex-wrap gap-2">{(selectedDrink.tags || []).slice(0, 3).map(renderTag)}</div>
+                    <div className="mb-3 max-h-28 space-y-1 overflow-y-auto text-base text-zinc-200 sm:max-h-36">
                       {selectedDrink.ingredients.map((ing, i) => (
-                        <div key={`${ing.pump}-${i}`} className="flex min-h-11 items-center justify-between rounded-xl border border-white/20 bg-white/10 px-3">
+                        <div key={`${ing.pump}-${i}`} className="flex min-h-10 items-center justify-between rounded-lg border border-black/15 bg-white px-3 font-semibold">
                           <span>{ing.name || `Pump ${ing.pump}`}</span>
                           <span className="font-semibold">{ing.ml} ml</span>
                         </div>
@@ -437,7 +439,7 @@ function App() {
                     <button
                       disabled={busy || starting}
                       onClick={startMix}
-                      className="min-h-14 w-full rounded-xl bg-gradient-to-r from-amber-300 via-orange-300 to-fuchsia-300 px-4 text-lg font-semibold text-zinc-900 transition hover:brightness-105 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50"
+                      className="sun-primary min-h-14 w-full rounded-lg px-4 text-lg font-black transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       {starting ? "Starting..." : busy ? "Machine Busy" : "Make Drink"}
                     </button>
@@ -445,32 +447,35 @@ function App() {
                 )}
               </aside>
 
-              <div className="glass-panel col-span-12 min-h-0 rounded-2xl p-3 md:col-span-8 md:p-4">
-                <div className="mb-3 flex items-center justify-between px-2">
-                  <h2 className="text-2xl font-semibold sm:text-3xl">Cocktails</h2>
+              <div className="glass-panel col-span-12 min-h-0 rounded-xl p-2 md:col-span-8 md:p-3">
+                <div className="mb-2 flex items-center justify-between px-1">
+                  <h2 className="text-xl font-black sm:text-2xl">Cocktails</h2>
+                  <span className="rounded-lg bg-[#17130d] px-3 py-1 text-sm font-black text-white">
+                    {filteredCount}
+                  </span>
                 </div>
 
                 {showEmpty && (
-                  <div className="flex h-[40vh] min-h-52 items-center justify-center rounded-2xl border border-white/20 bg-black/20 p-6 text-center">
+                  <div className="flex h-[40vh] min-h-52 items-center justify-center rounded-lg border-2 border-black/15 bg-[#fffaf0] p-6 text-center">
                     <div>
                       <Martini className="mx-auto mb-3 text-zinc-400" size={36} />
-                      <p className="text-xl font-medium">No drinks configured</p>
-                      <p className="mt-1 text-base text-zinc-400">Add recipes in your config to populate this menu.</p>
+                      <p className="text-xl font-black">No drinks configured</p>
+                      <p className="mt-1 text-base font-semibold text-zinc-400">Add recipes in your config to populate this menu.</p>
                     </div>
                   </div>
                 )}
 
                 {showNoSearchResult && (
-                  <div className="flex h-[40vh] min-h-52 items-center justify-center rounded-2xl border border-white/20 bg-black/20 p-6 text-center text-zinc-300">
+                  <div className="flex h-[40vh] min-h-52 items-center justify-center rounded-lg border-2 border-black/15 bg-[#fffaf0] p-6 text-center text-lg font-black text-zinc-300">
                     No drinks match your search.
                   </div>
                 )}
 
                 {!showEmpty && !showNoSearchResult && (
-                  <div className="grid max-h-full grid-cols-2 gap-3 overflow-y-auto p-1 lg:grid-cols-3">
+                  <div className="grid max-h-full grid-cols-2 gap-2 overflow-y-auto p-1">
                     {loading &&
                       Array.from({ length: 6 }).map((_, idx) => (
-                        <div key={idx} className="h-56 animate-pulse rounded-2xl bg-white/10" />
+                        <div key={idx} className="h-44 animate-pulse rounded-lg bg-black/10" />
                       ))}
                     {!loading &&
                       filteredDrinks.map((drink) => (
@@ -481,15 +486,15 @@ function App() {
                         setSelectedDrink(drink);
                         setView("detail");
                       }}
-                      className={`group min-h-[230px] overflow-hidden rounded-2xl border text-left transition ${selectedDrink?.id === drink.id ? "border-amber-300/70 ring-2 ring-amber-200/40" : "border-white/20"} ${busy ? "opacity-75" : "hover:-translate-y-0.5 hover:border-white/35"} bg-black/20`}
+                      className={`group min-h-[170px] overflow-hidden rounded-lg border-2 bg-white text-left shadow-sm transition sm:min-h-[190px] ${selectedDrink?.id === drink.id ? "border-[#e7a92f] ring-4 ring-[#ffd35a]/45" : "border-black/15"} ${busy ? "opacity-75" : "hover:border-black/35"}`}
                     >
                       <div className="relative">
-                        <DrinkImage imagePath={drink.image} name={drink.name} className="h-40 w-full object-cover" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                        <DrinkImage imagePath={drink.image} name={drink.name} className="h-28 w-full object-cover sm:h-32" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
                       </div>
-                      <div className="p-3 sm:p-4">
-                        <h3 className="line-clamp-1 text-xl font-semibold">{drink.name}</h3>
-                        <div className="mt-2 flex flex-wrap gap-2">{(drink.tags || []).slice(0, 3).map(renderTag)}</div>
+                      <div className="p-2 sm:p-3">
+                        <h3 className="line-clamp-1 text-xl font-black text-[#17130d]">{drink.name}</h3>
+                        <div className="mt-1 flex flex-wrap gap-1">{(drink.tags || []).slice(0, 2).map(renderTag)}</div>
                       </div>
                     </motion.button>
                       ))}
@@ -505,28 +510,28 @@ function App() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="glass-panel flex flex-1 flex-col justify-center rounded-2xl p-5 sm:p-8"
+              className="glass-panel flex flex-1 flex-col justify-center rounded-xl p-5 sm:p-6"
             >
               <div className="mx-auto w-full max-w-4xl">
-                <div className="mb-4 flex items-center gap-3 text-cyan-200">
+                <div className="mb-3 flex items-center gap-3 text-[#245f53]">
                   <Waves size={24} />
-                  <span className="text-lg">Precision Pour Sequence Active</span>
+                  <span className="text-lg font-black">Precision Pour Sequence Active</span>
                 </div>
-                <h2 className="mb-2 text-4xl font-semibold tracking-tight sm:text-5xl">Preparing Your Cocktail</h2>
-                <div className="mb-4 h-9 w-full overflow-hidden rounded-full bg-black/30 ring-1 ring-white/20">
+                <h2 className="mb-3 text-3xl font-black tracking-tight sm:text-5xl">Preparing Your Cocktail</h2>
+                <div className="mb-3 h-10 w-full overflow-hidden rounded-lg bg-white ring-2 ring-black/20">
                   <motion.div
-                    className="h-full bg-gradient-to-r from-cyan-300 via-emerald-300 to-amber-300"
+                    className="h-full bg-gradient-to-r from-[#245f53] via-[#2f8f5b] to-[#ffd35a]"
                     animate={{ width: `${Math.max(0, Math.min(100, progress.pct))}%` }}
                     transition={{ duration: 0.4 }}
                   />
                 </div>
-                <div className="mb-8 flex items-center justify-between text-xl">
+                <div className="mb-5 flex items-center justify-between text-xl font-black">
                   <span>{Math.round(progress.pct)}%</span>
                   <span>Est. remaining: {makeEtaText(progress.etaSeconds)}</span>
                 </div>
                 <button
                   onClick={stopMix}
-                  className="flex min-h-14 w-full items-center justify-center gap-2 rounded-xl bg-red-500/90 px-4 text-2xl font-semibold transition hover:bg-red-500 active:scale-[0.99]"
+                  className="sun-danger flex min-h-16 w-full items-center justify-center gap-2 rounded-lg px-4 text-2xl font-black transition hover:brightness-105"
                 >
                   <ShieldAlert size={22} />
                   Emergency Stop
@@ -541,19 +546,19 @@ function App() {
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
-              className="glass-panel flex flex-1 flex-col items-center justify-center rounded-2xl p-8 text-center"
+              className="glass-panel flex flex-1 flex-col items-center justify-center rounded-xl p-8 text-center"
             >
-              <div className="mb-4 rounded-full bg-emerald-400/20 p-4 text-emerald-300">
+              <div className="mb-4 rounded-full bg-[#2f8f5b] p-4 text-white">
                 <Sparkles size={36} />
               </div>
-              <h2 className="mb-2 text-4xl font-semibold">Cocktail Complete</h2>
-              <p className="mb-8 text-xl text-zinc-300">Serve immediately for peak flavor and temperature.</p>
+              <h2 className="mb-2 text-4xl font-black">Cocktail Complete</h2>
+              <p className="mb-8 text-xl font-semibold text-zinc-300">Serve immediately for peak flavor and temperature.</p>
               <button
                 onClick={() => {
                   setView("home");
                   setProgress({ runId: null, pct: 0, ingredient: "", etaSeconds: 0 });
                 }}
-                className="min-h-14 rounded-xl bg-gradient-to-r from-emerald-300 to-cyan-300 px-10 text-lg font-semibold text-zinc-900 transition hover:brightness-110 active:scale-[0.99]"
+                className="sun-primary min-h-14 rounded-lg px-10 text-lg font-black transition hover:brightness-105"
               >
                 Back to Menu
               </button>
@@ -566,20 +571,20 @@ function App() {
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
-              className="glass-panel flex flex-1 flex-col items-center justify-center rounded-2xl border-red-300/40 p-8 text-center"
+              className="glass-panel flex flex-1 flex-col items-center justify-center rounded-xl border-red-700/50 p-8 text-center"
             >
-              <div className="mb-4 rounded-full bg-red-400/20 p-4 text-red-300">
+              <div className="mb-4 rounded-full bg-[#d91f2f] p-4 text-white">
                 <AlertTriangle size={36} />
               </div>
-              <h2 className="mb-2 text-4xl font-semibold">Machine Stopped</h2>
-              <p className="mb-8 text-xl text-zinc-200">{errorText || "An unexpected error occurred."}</p>
+              <h2 className="mb-2 text-4xl font-black">Machine Stopped</h2>
+              <p className="mb-8 text-xl font-semibold text-zinc-200">{errorText || "An unexpected error occurred."}</p>
               <button
                 onClick={() => {
                   setErrorText("");
                   setView("home");
                   syncStatus().catch(() => {});
                 }}
-                className="min-h-14 rounded-xl bg-gradient-to-r from-amber-300 to-orange-300 px-10 text-lg font-semibold text-zinc-900 transition hover:brightness-110 active:scale-[0.99]"
+                className="sun-primary min-h-14 rounded-lg px-10 text-lg font-black transition hover:brightness-105"
               >
                 Return to Menu
               </button>
@@ -592,32 +597,32 @@ function App() {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
-              className="glass-panel flex min-h-0 flex-1 flex-col rounded-2xl p-5 sm:p-6"
+              className="glass-panel flex min-h-0 flex-1 flex-col rounded-xl p-4 sm:p-5"
             >
-              <div className="mb-4 flex items-center justify-between">
+              <div className="mb-3 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <Beaker size={24} className="text-cyan-200" />
-                  <h2 className="text-3xl font-semibold">Calibration</h2>
+                  <Beaker size={24} className="text-[#245f53]" />
+                  <h2 className="text-3xl font-black">Calibration</h2>
                 </div>
                 <button
                   onClick={() => setView("home")}
-                  className="min-h-12 rounded-xl border border-white/25 bg-white/10 px-4 text-base transition hover:bg-white/20 active:scale-[0.98]"
+                  className="sun-button min-h-12 rounded-lg px-4 text-base font-bold transition hover:brightness-95"
                 >
                   Back
                 </button>
               </div>
-              <p className="mb-4 text-base text-zinc-300">Tune each pump flow rate for accurate pours. Values shown are ml/sec.</p>
-              <div className="min-h-0 flex-1 space-y-3 overflow-y-auto pr-1">
+              <p className="mb-3 text-base font-semibold text-zinc-300">Tune each pump flow rate for accurate pours. Values shown are ml/sec.</p>
+              <div className="min-h-0 flex-1 space-y-2 overflow-y-auto pr-1">
                 {adminPumps.map((pump) => (
-                  <div key={pump.pump} className={`rounded-2xl border border-white/20 bg-black/20 p-4 ${pump.enabled ? "" : "opacity-60"}`}>
-                    <div className="mb-3 flex items-center justify-between">
+                  <div key={pump.pump} className={`rounded-lg border-2 border-black/15 bg-[#fffaf0] p-3 ${pump.enabled ? "" : "opacity-60"}`}>
+                    <div className="mb-2 flex items-center justify-between">
                       <div>
-                        <div className="text-xl font-semibold">Pump {pump.pump}</div>
-                        <div className="text-sm text-zinc-400">
+                        <div className="text-xl font-black">Pump {pump.pump}</div>
+                        <div className="text-sm font-semibold text-zinc-400">
                           GPIO: {pump.gpio_pin}{pump.enabled ? "" : " - disabled"}
                         </div>
                       </div>
-                      <div className="rounded-xl bg-white/10 px-3 py-1 text-lg font-semibold">
+                      <div className="rounded-lg border border-black/15 bg-white px-3 py-1 text-lg font-black">
                         {Number(pump.ml_per_second).toFixed(2)} ml/s
                       </div>
                     </div>
@@ -628,17 +633,17 @@ function App() {
                       step="0.1"
                       value={pump.ml_per_second}
                       onChange={(e) => updatePumpRate(pump.pump, e.target.value)}
-                      className="h-3 w-full accent-cyan-300"
+                      className="h-4 w-full accent-[#245f53]"
                     />
                   </div>
                 ))}
               </div>
               <div className="mt-4 flex items-center justify-between">
-                <div className="text-sm text-zinc-400">{adminSavedAt ? `Last saved at ${adminSavedAt}` : "No pending changes saved yet."}</div>
+                <div className="text-sm font-semibold text-zinc-400">{adminSavedAt ? `Last saved at ${adminSavedAt}` : "No pending changes saved yet."}</div>
                 <button
                   onClick={saveCalibration}
                   disabled={busy || calibrationSaving}
-                  className="min-h-12 rounded-xl bg-gradient-to-r from-cyan-300 to-emerald-300 px-6 text-lg font-semibold text-zinc-900 transition hover:brightness-105 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50"
+                  className="sun-primary min-h-12 rounded-lg px-6 text-lg font-black transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {calibrationSaving ? "Saving..." : "Save Calibration"}
                 </button>

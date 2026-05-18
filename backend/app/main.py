@@ -9,6 +9,7 @@ from fastapi import FastAPI, HTTPException, Query, WebSocket, WebSocketDisconnec
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel, Field
 
 from .hardware.mock import MockHardware
 from .hardware.raspi_gpio import RaspberryPiGPIOHardware
@@ -19,6 +20,15 @@ from .services.progress_hub import ProgressHub
 root_dir = Path(__file__).resolve().parents[2]
 logs_dir = root_dir / "logs"
 log_file = logs_dir / "mixer.log"
+
+
+class PumpCalibrationUpdate(BaseModel):
+    pump: int
+    ml_per_second: float = Field(gt=0)
+
+
+class CalibrationUpdateRequest(BaseModel):
+    pumps: list[PumpCalibrationUpdate]
 
 
 def configure_logging() -> logging.Logger:
@@ -46,11 +56,11 @@ async def lifespan(app: FastAPI):
     config = ConfigStore()
     hub = ProgressHub()
     mode = os.getenv("MIXER_MODE", "mock").lower()
-    hardware = RaspberryPiGPIOHardware(config.pumps) if mode == "gpio" else MockHardware()
+    hardware = RaspberryPiGPIOHardware(config.enabled_pumps) if mode == "gpio" else MockHardware()
     mixer = PumpController(
         hardware=hardware,
         progress_hub=hub,
-        pumps=config.pumps,
+        pumps=config.enabled_pumps,
         mode=mode,
         logger=logger,
     )
@@ -78,8 +88,9 @@ app.add_middleware(
 app.mount("/assets", StaticFiles(directory=root_dir / "assets"), name="assets")
 frontend_dist = root_dir / "frontend" / "dist"
 serve_frontend = os.getenv("SERVE_FRONTEND", "0").lower() in {"1", "true", "yes"}
-if serve_frontend and frontend_dist.exists():
-    app.mount("/ui-assets", StaticFiles(directory=frontend_dist / "assets"), name="ui-assets")
+frontend_assets = frontend_dist / "ui-assets"
+if serve_frontend and frontend_assets.exists():
+    app.mount("/ui-assets", StaticFiles(directory=frontend_assets), name="ui-assets")
 
 
 @app.get("/api/health")
@@ -113,6 +124,24 @@ async def get_config():
         "pumps": app.state.config.pumps,
         "calibration": app.state.config.calibration,
     }
+
+
+@app.put("/api/config/calibration")
+async def update_calibration(payload: CalibrationUpdateRequest):
+    try:
+        if app.state.mixer.is_busy():
+            raise RuntimeError("Cannot update calibration while mixer is busy")
+        pumps = app.state.config.save_calibration([p.model_dump() for p in payload.pumps])
+        await app.state.mixer.update_calibration(app.state.config.enabled_pumps)
+    except RuntimeError as exc:
+        app.state.logger.error("calibration_update_error error=%s", exc)
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+    except ValueError as exc:
+        app.state.logger.error("calibration_update_error error=%s", exc)
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    app.state.logger.info("calibration_updated pumps=%s", len(payload.pumps))
+    return {"status": "saved", "pumps": pumps}
 
 
 @app.post("/api/mix/{drink_id}")

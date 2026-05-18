@@ -86,6 +86,7 @@ The frontend uses these backend endpoints:
 - `GET /api/status`
 - `GET /api/config`
 - `GET /api/logs/recent?lines=100`
+- `PUT /api/config/calibration`
 - `POST /api/mix/{drink_id}`
 - `POST /api/stop`
 - `WS /ws/progress`
@@ -171,7 +172,7 @@ To replace placeholders with your photos:
 2. Move to Raspberry Pi and `MIXER_MODE=gpio`.
 3. Prime each line with water.
 4. Dispense known volumes (for example 100 ml) and measure output.
-5. Update `ml_per_second` in `config/pumps.json`.
+5. Update `ml_per_second` from the Admin screen, or edit `config/pumps.json`.
 6. Repeat until measured output matches target within tolerance.
 
 ## Build Frontend (Production)

@@ -53,6 +53,8 @@ class PumpController:
     def _build_calibration_map(pumps: list[dict]) -> dict[int, float]:
         calibration: dict[int, float] = {}
         for pump in pumps:
+            if not pump.get("enabled", True):
+                continue
             pump_number = int(pump["pump"])
             ml_per_second = float(pump["ml_per_second"])
             if ml_per_second <= 0:
@@ -110,6 +112,15 @@ class PumpController:
                 "message": "Emergency stop activated",
             }
         )
+
+    async def update_calibration(self, pumps: list[dict]) -> None:
+        async with self._lock:
+            if self._mix_task and not self._mix_task.done():
+                raise RuntimeError("Cannot update calibration while mixer is busy")
+            self._ml_per_second_by_pump = self._build_calibration_map(pumps)
+
+    def is_busy(self) -> bool:
+        return bool(self._mix_task and not self._mix_task.done())
 
     def get_status(self) -> dict:
         today_key = datetime.now(timezone.utc).date().isoformat()

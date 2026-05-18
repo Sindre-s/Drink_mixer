@@ -91,6 +91,7 @@ function App() {
   const [errorText, setErrorText] = useState("");
   const [adminPumps, setAdminPumps] = useState([]);
   const [adminSavedAt, setAdminSavedAt] = useState("");
+  const [calibrationSaving, setCalibrationSaving] = useState(false);
   const [progress, setProgress] = useState({
     runId: null,
     pct: 0,
@@ -120,7 +121,8 @@ function App() {
       return configData.pumps.map((p) => ({
         pump: p.pump,
         gpio_pin: p.gpio_pin,
-        ml_per_second: p.ml_per_second
+        ml_per_second: p.ml_per_second,
+        enabled: p.enabled !== false
       }));
     }
     const discovered = new Set();
@@ -131,7 +133,7 @@ function App() {
     }
     return Array.from(discovered)
       .sort((a, b) => a - b)
-      .map((pump) => ({ pump, gpio_pin: "-", ml_per_second: 0 }));
+      .map((pump) => ({ pump, gpio_pin: "-", ml_per_second: 0, enabled: true }));
   };
 
   const syncStatus = async () => {
@@ -273,8 +275,30 @@ function App() {
     }
   };
 
-  const saveCalibration = () => {
-    setAdminSavedAt(new Date().toLocaleTimeString());
+  const saveCalibration = async () => {
+    try {
+      setCalibrationSaving(true);
+      const res = await fetch(`${API_BASE}/api/config/calibration`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          pumps: adminPumps.map(({ pump, ml_per_second }) => ({ pump, ml_per_second }))
+        })
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.detail || "Failed to save calibration");
+      }
+      const data = await res.json();
+      setAdminPumps(toAdminPumps(data, drinks));
+      setAdminSavedAt(new Date().toLocaleTimeString());
+      setStatusText("Calibration saved");
+    } catch (err) {
+      setErrorText(err.message || "Failed to save calibration");
+      setView("error");
+    } finally {
+      setCalibrationSaving(false);
+    }
   };
 
   const updatePumpRate = (pumpNumber, value) => {
@@ -585,11 +609,13 @@ function App() {
               <p className="mb-4 text-base text-zinc-300">Tune each pump flow rate for accurate pours. Values shown are ml/sec.</p>
               <div className="min-h-0 flex-1 space-y-3 overflow-y-auto pr-1">
                 {adminPumps.map((pump) => (
-                  <div key={pump.pump} className="rounded-2xl border border-white/20 bg-black/20 p-4">
+                  <div key={pump.pump} className={`rounded-2xl border border-white/20 bg-black/20 p-4 ${pump.enabled ? "" : "opacity-60"}`}>
                     <div className="mb-3 flex items-center justify-between">
                       <div>
                         <div className="text-xl font-semibold">Pump {pump.pump}</div>
-                        <div className="text-sm text-zinc-400">GPIO: {pump.gpio_pin}</div>
+                        <div className="text-sm text-zinc-400">
+                          GPIO: {pump.gpio_pin}{pump.enabled ? "" : " - disabled"}
+                        </div>
                       </div>
                       <div className="rounded-xl bg-white/10 px-3 py-1 text-lg font-semibold">
                         {Number(pump.ml_per_second).toFixed(2)} ml/s
@@ -611,10 +637,10 @@ function App() {
                 <div className="text-sm text-zinc-400">{adminSavedAt ? `Last saved at ${adminSavedAt}` : "No pending changes saved yet."}</div>
                 <button
                   onClick={saveCalibration}
-                  disabled={busy}
+                  disabled={busy || calibrationSaving}
                   className="min-h-12 rounded-xl bg-gradient-to-r from-cyan-300 to-emerald-300 px-6 text-lg font-semibold text-zinc-900 transition hover:brightness-105 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  Save Calibration
+                  {calibrationSaving ? "Saving..." : "Save Calibration"}
                 </button>
               </div>
             </motion.section>
